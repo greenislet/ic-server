@@ -33,6 +33,8 @@ namespace ic_server
 	{
 		ic_server_log("new cycle: {} ticks elapsed", "game", nb_ticks);
 
+		
+
 		// Prepare next call
 		nb_ticks = 0;
 		while (wake_time_ < std::chrono::steady_clock::now())

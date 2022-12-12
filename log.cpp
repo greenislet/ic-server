@@ -11,7 +11,7 @@ private:
 private:
 	log()
 	{
-		spdlog::set_pattern("[%H:%M:%S.%f] [%t] %v");
+		spdlog::set_pattern("[%H:%M:%S.%f] [%5t] %v");
 	}
 };
 
