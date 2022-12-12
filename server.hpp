@@ -5,6 +5,7 @@
 #include <list>
 
 #include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/steady_timer.hpp>
 
 #include "config.hpp"
 
@@ -21,6 +22,8 @@ namespace ic_server
 		boost::asio::ip::tcp::acceptor		   acceptor_;
 		boost::asio::ip::tcp::socket		   new_client_socket_;
 		std::list<std::shared_ptr<connection>> connections_;
+		std::chrono::steady_clock::time_point  wake_time_;
+		boost::asio::steady_timer              game_cycle_timer_;
 
 	public:
 		server(boost::asio::io_context& ioc, unsigned short port);
@@ -36,6 +39,8 @@ namespace ic_server
 		}
 
 		void start_game();
+
+		void game_cycle(boost::system::error_code const& error, unsigned int nb_ticks);
 
 		void start_network();
 
